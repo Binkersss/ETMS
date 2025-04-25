@@ -1,0 +1,28 @@
+{
+  "name": "etms",
+  "version": "0.0.1",
+  "description": "An endurance training management system.",
+  "main": "server.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Binkersss/ETMS.git"
+  },
+  "author": "Nathaniel Chappelle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Binkersss/ETMS/issues"
+  },
+  "homepage": "https://github.com/Binkersss/ETMS#readme",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mariadb": "^3.4.1"
+  },
+  "devDependencies": {
+    "vitest": "^3.1.2"
+  }
+}
