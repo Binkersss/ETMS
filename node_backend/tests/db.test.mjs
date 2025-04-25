@@ -18,7 +18,7 @@ vi.mock('mariadb', () => {
 });
 
 import mariadb from 'mariadb'; // this now works due to the fixed mock
-import pool from './db.mjs';    // make sure the extension is included in ESM
+import pool from '../db.mjs';    // make sure the extension is included in ESM
 
 describe('Database Pool', () => {
   it('should create a pool with the correct configuration', () => {
