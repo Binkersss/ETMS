@@ -1,0 +1,11 @@
+Requirements:
+
+1. Select 1 table --> DONE
+2. Select 2 tables --> DONE
+3. Select 3 tables --> DONE
+4. Insert --> DONE
+5. Update --> DONE (Just need to implement in admin menu)
+6. Delete --> DONE
+7. Trigger/procedure 1 -->
+8. Trigger/procedure 2 -->
+9. Trigger/procedure 3 -->

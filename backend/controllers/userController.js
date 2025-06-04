@@ -118,3 +118,20 @@ export const deleteUser = async(req, res) => {
         });
     }
 }
+
+export const getAllCoaches = async(req, res) => {
+    try {
+        const data = await db
+            .promise()
+            .query(
+                `SELECT * FROM users WHERE role = 'coach';`
+            );
+        res.status(200).json({
+            coaches: data[0],
+        });
+    } catch (err) {
+        res.status(500).json({
+            message: err,
+        });
+    }
+}
