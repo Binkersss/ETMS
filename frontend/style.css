@@ -1,0 +1,8 @@
+body {
+  font-family: sans-serif;
+  padding: 2rem;
+}
+input {
+  display: block;
+  margin: 0.5rem 0;
+}

@@ -1,0 +1,2 @@
+### DELETE user
+DELETE http://localhost:3000/users/11
