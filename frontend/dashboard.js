@@ -46,9 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>${user.role}</td>
                     <td><button class="menu-button">Open Menu</button>
                         <div class="popup-menu">
-                            <button onclick="alert('Option 1')">Option 1</button>
-                            <button onclick="alert('Option 2')">Option 2</button>
-                            <button onclick="alert('Option 3')">Option 3</button>
+                            <button onclick="changeUsername(${user.user_id})">Change Username</button>
+                            <button onclick="changeEmail(${user.user_id})">Change Email</button>
+                            <button onclick="changePassword(${user.user_id})">Change Password</button>
+                            <button onclick="changeRole(${user.user_id})">Change Role</button>
                     </td>
                     <td><button onclick="deleteUser(${user.user_id})">Delete</button>
                 </tr>
@@ -56,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 userList.innerHTML = `
                 <h3>All Users</h3>
+                <button onclick="newUser()">New User</button>
                 <table>
                     <tr>
                         <th>Username</th>
@@ -291,4 +293,162 @@ function deleteUser(user_id) {
     .catch(error => {
         alert('Error deleting user: ' + error.message);
     });
+}
+
+async function newUser() {
+    let username = window.prompt("New Username", "username");
+    let email = window.prompt("New Email", "hello@world.com");
+    let password = window.prompt("New Password", "password");
+    let role = window.prompt("New Role", "role");
+
+    if (!username || !email || !password || !role) {
+        alert("All fields are required.");
+        return;
+    }
+
+    try {
+        const res = await fetch('http://localhost:3000/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, email, password, role })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            alert("Error: " + (data.message || "Failed to create user."));
+            return;
+        }
+
+        alert("User created successfully!");
+        location.reload();
+    } catch (err) {
+        alert("Error: " + err.message);
+    }
+}
+
+async function changeUsername(user_id) {
+    let newUsername = window.prompt("New Username", "");
+
+    if (!newUsername) {
+        alert("All fields are required.");
+        return;
+    }
+
+    try {
+        const res = await fetch(`http://localhost:3000/users/${user_id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: newUsername
+            }),
+        });
+
+        if (!res.ok) {
+            const errorData = await res.json();
+            throw new Error(errorData.message || 'Failed to update username');
+        }
+
+        
+    } catch (err) {
+        console.error('Error updating username:', err);
+        alert('There was a problem updating the username.');
+    }
+}
+
+async function changeEmail(user_id) {
+    let newEmail = window.prompt("New Email", "");
+
+    if (!newEmail) {
+        alert("All fields are required.");
+        return;
+    }
+
+    try {
+        const res = await fetch(`http://localhost:3000/users/${user_id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: newEmail
+            }),
+        });
+
+        if (!res.ok) {
+            const errorData = await res.json();
+            throw new Error(errorData.message || 'Failed to update email');
+        }
+
+        
+    } catch (err) {
+        console.error('Error updating email:', err);
+        alert('There was a problem updating the email.');
+    }
+}
+
+async function changePassword(user_id) {
+    let newPassword = window.prompt("New Password", "");
+
+    if (!newPassword) {
+        alert("All fields are required.");
+        return;
+    }
+
+    try {
+        const res = await fetch(`http://localhost:3000/users/${user_id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                password: newPassword
+            }),
+        });
+
+        if (!res.ok) {
+            const errorData = await res.json();
+            throw new Error(errorData.message || 'Failed to update password');
+        }
+
+        
+    } catch (err) {
+        console.error('Error updating password:', err);
+        alert('There was a problem updating the password.');
+    }
+}
+
+async function changeRole(user_id) {
+    let newRole = window.prompt("New Role", "");
+
+    if (!newRole) {
+        alert("All fields are required.");
+        return;
+    }
+
+    try {
+        const res = await fetch(`http://localhost:3000/users/${user_id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                role: newRole
+            }),
+        });
+
+        if (!res.ok) {
+            const errorData = await res.json();
+            throw new Error(errorData.message || 'Failed to update role');
+        }
+
+        
+    } catch (err) {
+        console.error('Error updating role:', err);
+        alert('There was a problem updating the role.');
+    }
 }

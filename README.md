@@ -1,5 +1,36 @@
 # Endurance Training Management System
 
+## How to Run The Project
+1. **Clone the Repository**: 
+   ```bash
+   git clone git@github.com:Binkersss/ETMS.git
+   ```
+2. **Navigate to the Project Directory**:
+   ```bash
+   cd ETMS
+   ```
+3. **Open a Second Terminal**: 
+   - This will be used to run the backend server.
+4. **Config your Dotenv**:
+   - Create a `.env` file in the `backend` directory and add your environment variables. You can use the `.env.example` as a reference.
+   - Ensure you have the necessary database connection strings set up.
+5. **Start the Backend Server**:
+    ```bash
+    cd backend
+    npm install
+    npm run dev
+    ```
+6. **Start the Frontend**:
+    - Return to the first terminal and run:
+    ```bash
+    cd frontend
+    npm install
+    npx http-server
+    ```
+7. **Access the Application**:
+    - Open your web browser and navigate to `http://localhost:8080` (or the port specified by `http-server`).
+    - Login to a user with the admin role to access the admin dashboard.
+
 ## Project Description
 
 The Endurance Training Management System is a web application designed to help athletes and coaches plan, track, and analyze endurance training programs. Inspired by platforms like TrainingPeaks and intervals.icu, this system aims to provide comprehensize tools for managing training schedules, monitoring performance, and optimizing training plans based on data-driven insights.

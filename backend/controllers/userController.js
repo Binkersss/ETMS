@@ -32,32 +32,36 @@ export const getUserById = async(req, res) => {
     }
 }
 
-export const createNewUser = async(req, res) => {
+export const createNewUser = async (req, res) => {
     try {
         const { username, password, email, role } = req.body;
-        const [{ insertID }] = await db.promise().query(
+
+        const [result] = await db.promise().query(
             `INSERT INTO users (username, password, email, role)
-                VALUES (?, ?, ?, ?)`
-            [username, password, email, role]
+             VALUES (?, ?, ?, ?)`,
+            [username, password, email, role] // <-- this was missing a comma
         );
+
         res.status(202).json({
             message: "User Created",
-            username: `${username}`,
-            password: `${password}`,
-            email: `${email}`,
-            role: `${role}`,
+            user_id: result.insertId, // optional to return ID
+            username,
+            email,
+            role,
         });
     } catch (err) {
+        console.error("Error creating user:", err);
         res.status(500).json({
-            message: err,
+            message: err.message || err,
         });
     }
-}
+};
+
 
 export const updateUser = async(req, res) => {
     try {
         const { id } = req.params;
-        const { username, password, email, rol } = req.body;
+        const { username, password, email, role } = req.body;
 
         const fields = [];
         const values = [];
@@ -75,7 +79,7 @@ export const updateUser = async(req, res) => {
             values.push(email);
         }
         if (role) {
-            fields.push('email = ?');
+            fields.push('role = ?');
             values.push(role);
         }
 

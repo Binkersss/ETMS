@@ -6,6 +6,6 @@ Requirements:
 4. Insert --> DONE
 5. Update --> DONE (Just need to implement in admin menu)
 6. Delete --> DONE
-7. Trigger/procedure 1 -->
-8. Trigger/procedure 2 -->
-9. Trigger/procedure 3 -->
+7. Trigger/procedure 1 --> Check on value of role for new inserted user
+8. Trigger/procedure 2 --> Email validation, but create view in html for it
+9. Trigger/procedure 3 --> Email correction
