@@ -15,7 +15,11 @@ if (form) {
         body: JSON.stringify({ email, password })
       });
 
+      console.log(res);
+
       const data = await res.json();
+
+      console.log(data);
       
       if (!res.ok) {
         document.getElementById('error').textContent = data.message;
